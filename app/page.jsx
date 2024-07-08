@@ -1,3 +1,4 @@
+import AllPosts from "@components/AllPosts";
 import Hero from "@components/Hero";
 import RecentPost from "@components/RecentPost";
 import TrendingPosts from "@components/TrendingPosts";
@@ -13,8 +14,8 @@ const Home = () => {
         <div className="w-2/5 sticky top-4">
           <TrendingPosts />
         </div>
-
       </div>
+      <AllPosts/>
     </div>
   )
 };
