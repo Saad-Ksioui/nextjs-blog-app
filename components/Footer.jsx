@@ -2,7 +2,7 @@ import { navItems } from "@constants";
 
 const Footer = () => {
   return (
-    <footer className="w-4/5 mx-auto flex flex-col justify-center gap-3 font-poppins">
+    <footer className="w-4/5 mx-auto mb-5 flex flex-col justify-center gap-3 font-poppins">
       <ul className="flex justify-center items-center gap-5">
         {
           navItems.map((navItem, index) => (
