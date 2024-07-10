@@ -12,9 +12,9 @@ const Nav = () => {
 
   return (
     <nav className="w-4/5 mx-auto mt-5 flex items-center justify-between font-poppins font-medium">
-      <div className="flex items-center gap-1">
+      <Link href="/" className="flex items-center gap-1">
         <Image src={images.Logo} alt="Logo" className="w-40 hover:fill-slate-400" />
-      </div>
+      </Link>
       <div className="hidden lg:flex items-center gap-20">
         <ul className="flex items-center gap-5">
           {navItems.map((navItem, index) => (
