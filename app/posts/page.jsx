@@ -3,9 +3,10 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const AllPosts = () => {
+const Posts = () => {
   const posts = [
     {
+      id: 1,
       src: images.RecentPostImg,
       alt: "Wearing glasses while coding on a computer",
       date: "27 Jun 2024",
@@ -15,6 +16,7 @@ const AllPosts = () => {
       tags: ["Research", "Health"],
     },
     {
+      id: 2,
       src: images.RecentPostImg,
       alt: "Wearing glasses while coding on a computer",
       date: "27 Jun 2024",
@@ -24,6 +26,7 @@ const AllPosts = () => {
       tags: ["Research", "Health"],
     },
     {
+      id: 3,
       src: images.RecentPostImg,
       alt: "Wearing glasses while coding on a computer",
       date: "27 Jun 2024",
@@ -36,8 +39,23 @@ const AllPosts = () => {
 
   return (
     <section className="w-4/5 mx-auto my-10 font-poppins">
-      <h2 className="text-2xl font-bold">All Posts</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
+      <div className="flex flex-col lg:flex-row items-center justify-between my-10 gap-5">
+        <h2 className="text-2xl font-bold">All Posts</h2>
+        <form className="flex flex-col lg:flex-row items-center gap-2 w-full lg:w-auto">
+          <input
+            type="text"
+            placeholder="Search for posts..."
+            className="p-2 outline-none bg-white border border-gray-300 rounded-lg w-full lg:w-auto"
+          />
+          <button
+            type="submit"
+            className="bg-[#101727] text-white px-4 py-2 rounded-lg w-full lg:w-auto"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {posts.map((post, index) => (
           <div key={index} className="bg-white p-5 rounded-lg shadow">
             <Image
@@ -71,12 +89,12 @@ const AllPosts = () => {
         ))}
       </div>
       <div className="mt-10 flex justify-center">
-        <Link href="/posts" className="bg-[#101727] text-white px-3 py-2 rounded-lg">
+        <button className="bg-[#101727] text-white px-3 py-2 rounded-lg">
           View more
-        </Link>
+        </button>
       </div>
     </section>
   );
 };
 
-export default AllPosts;
+export default Posts;
