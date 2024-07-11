@@ -5,7 +5,7 @@ import TrendingPosts from "@components/TrendingPosts";
 
 const Home = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       <Hero />
       <div className="w-4/5 mx-auto mt-10 flex flex-col lg:flex-row items-start gap-5 font-poppins">
         <div className="w-full lg:w-3/5">
