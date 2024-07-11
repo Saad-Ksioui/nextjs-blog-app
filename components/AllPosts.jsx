@@ -1,56 +1,59 @@
-import { images } from "@constants";
+"use client"
+
+import { getPosts } from "@services/api";
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+import moment from "moment";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const AllPosts = () => {
-  const posts = [
-    {
-      src: images.RecentPostImg,
-      alt: "Wearing glasses while coding on a computer",
-      date: "27 Jun 2024",
-      title: "The Importance of Using Glasses While Coding",
-      description:
-        "In the digital age, coding has become an integral part of many professionals' daily lives. Whether you're a seasoned developer or just starting your journey in the world of programming, you likely spend long hours in front of a computer screen...",
-      tags: ["Research", "Health"],
-    },
-    {
-      src: images.RecentPostImg,
-      alt: "Wearing glasses while coding on a computer",
-      date: "27 Jun 2024",
-      title: "The Importance of Using Glasses While Coding",
-      description:
-        "In the digital age, coding has become an integral part of many professionals' daily lives. Whether you're a seasoned developer or just starting your journey in the world of programming, you likely spend long hours in front of a computer screen...",
-      tags: ["Research", "Health"],
-    },
-    {
-      src: images.RecentPostImg,
-      alt: "Wearing glasses while coding on a computer",
-      date: "27 Jun 2024",
-      title: "The Importance of Using Glasses While Coding",
-      description:
-        "In the digital age, coding has become an integral part of many professionals' daily lives. Whether you're a seasoned developer or just starting your journey in the world of programming, you likely spend long hours in front of a computer screen...",
-      tags: ["Research", "Health"],
-    },
-  ];
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setIsLoading(true);
+        const data = await getPosts();
+        console.log('Fetched posts:', data);
+        if (data) {
+          setPosts(data);
+        } else {
+          console.error('No data fetched');
+        }
+      } catch (error) {
+        setError('Error fetching posts: ' + error.message);
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+
+
+  const topThreePosts = posts.slice(0, 3);
 
   return (
     <section className="w-4/5 mx-auto my-10 font-poppins">
       <h2 className="text-2xl font-bold">All Posts</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
-        {posts.map((post, index) => (
-          <div key={index} className="bg-white p-5 rounded-lg shadow">
-            <Image
-              src={post.src}
-              alt={post.alt}
+        {topThreePosts?.map((post, index) => (
+          <div key={index} className="bg-white p-5 rounded-lg shadow break-inside-avoid">
+            <img
+              src={`/assets/${post.post_img}`}
+              alt={post.title}
               className="h-[247px] object-cover w-full rounded-lg"
             />
             <p className="mt-3 text-sm font-medium text-gray-700">
-              Saad Ksioui - {post.date}
+              {post.creator} - {moment(post.createdAt).format('MMMM Do YYYY')}
             </p>
             <div className="flex items-center justify-between mt-2">
               <h1 className="text-lg font-semibold">{post.title}</h1>
-              <Link href={`/posts/${post.id}`}>
+              <Link href={`/posts/${post._id}`}>
                 <ArrowUpRight className="text-gray-700" />
               </Link>
             </div>
@@ -58,12 +61,12 @@ const AllPosts = () => {
               {post.description}
             </p>
             <div className="flex items-center gap-2 mt-4 flex-wrap">
-              {post.tags.map((tag, index) => (
+              {post?.tags?.map((tag, index) => (
                 <span
                   key={index}
                   className="px-2 py-1 text-sm font-medium rounded-full border-2 border-black"
                 >
-                  {tag}
+                  {tag.tag}
                 </span>
               ))}
             </div>

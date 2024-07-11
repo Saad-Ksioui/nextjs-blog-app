@@ -52,14 +52,15 @@ const Nav = () => {
               </li>
             ))}
           </ul>
-          <div className="flex flex-col items-center gap-5 mt-5">
-            <button className="py-2 px-3 border-2 border-black hover:bg-black hover:text-white hover:rounded-lg duration-300 transition-all">
+          <Link href="/subscribe" className="flex flex-col items-center gap-5 mt-5">
+            <div className="py-2 px-3 border-2 border-black hover:bg-black hover:text-white hover:rounded-lg duration-300 transition-all">
               Subscribe
-            </button>
-          </div>
+            </div>
+          </Link>
         </div>
-      )}
-    </nav>
+      )
+      }
+    </nav >
   );
 };
 

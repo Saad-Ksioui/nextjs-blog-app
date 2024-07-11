@@ -11,7 +11,7 @@ const Home = () => {
         <div className="w-full lg:w-3/5">
           <RecentPost />
         </div>
-        <div className="w-full lg:w-2/5 sticky top-4 mt-10 lg:mt-0">
+        <div className="w-full lg:w-2/5 sticky top-0 mt-10 lg:mt-0">
           <TrendingPosts />
         </div>
       </div>
